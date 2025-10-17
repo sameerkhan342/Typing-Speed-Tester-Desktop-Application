@@ -19,10 +19,6 @@ The home screen where you can start the typing test.
 The main screen shows the text to type and a countdown timer.
 
 ### Result Screen
-![Result](images/result.png)  
-Displays your typing **accuracy** and **WPM** after the test ends.
+![Result](images/visulize.png)  
+Displays your typing **accuracy** and **WPM** after the test ends and **Visualization** the Data.
 
-## How to Run
-1. Clone this repository:  
-   ```bash
-   git clone https://github.com/yourusername/speed-typing-tester.git
