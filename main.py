@@ -1,6 +1,11 @@
 from tkinter import *
 import time
 
+import matplotlib.pyplot as plt
+
+
+
+
 window = Tk()
 window.title("Typing Speed Tester App")
 window.geometry("1000x700")
@@ -34,6 +39,8 @@ def show_text():
 
     timer_label.config(text=str(time_left))
     countdown()
+    
+    
 
 def key_pressed(event):
     global time_up
@@ -65,12 +72,23 @@ def countdown():
         time_up = True
         end_test()
 
+# Global variables to store results
+final_accuracy = 0
+final_wpm = 0
+
 def end_test():
+    global final_accuracy, final_wpm
     elapsed_time = time_choice.get() - time_left
     total_chars = len(text_test)
-    accuracy = (correct_chars[0] / total_chars) * 100
-    wpm = (correct_chars[0] / 5) / (elapsed_time / 60)
-    result_label.config(text=f"Accuracy: {accuracy:.2f}%   WPM: {wpm:.2f}")
+
+    final_accuracy = (correct_chars[0] / total_chars) * 100
+    final_wpm = (correct_chars[0] / 5) / (elapsed_time / 60)
+    
+    result_label.config(text=f"Accuracy: {final_accuracy:.2f}%   WPM: {final_wpm:.2f}")
+    
+    plt.bar(["Accuracy", "WPM"], [final_accuracy, final_wpm], color=["green","blue"])
+    plt.ylim(0, 150)
+    plt.show()
 
 header_label = Label(window, text="Typing Speed Tester", font=("Helvetica", 36, "bold"), bg="#1E1E2F", fg="#FFD700")
 header_label.pack(pady=10)
